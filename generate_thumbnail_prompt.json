@@ -1,0 +1,31 @@
+{
+  "name": "generate_thumbnail_prompt",
+  "description": "Generate a cinematic AI image prompt for the YouTube thumbnail of a healing music video. Designed for tools like Dreamnima or CapCut AI.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "scene": {
+        "type": "string",
+        "description": "The core visual scene (e.g., girl by rainy window, night forest, lonely streetlamp)."
+      },
+      "palette": {
+        "type": "string",
+        "description": "The color palette for the visual (e.g., midnight blue, deep purple, moonlight yellow)."
+      },
+      "style": {
+        "type": "string",
+        "description": "The style of illustration (e.g., moody, dreamy, ultra-detailed, cinematic, paper cut-out)."
+      },
+      "aspect_ratio": {
+        "type": "string",
+        "description": "The format of the image (e.g., 16:9, square)."
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese", "Bilingual"],
+        "description": "Language for output prompt."
+      }
+    },
+    "required": ["scene", "palette", "style"]
+  }
+}
