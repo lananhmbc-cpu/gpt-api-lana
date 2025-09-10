@@ -2,14 +2,18 @@ openapi: 3.0.0
 info:
   title: Still Awake • Creator Assistant API
   description: |
-    API cho hệ thống Creator Assistant hỗ trợ kênh "Still Awake • with Lana". Bao gồm các hành động như tạo tiêu đề, mô tả, hashtag, prompt cho ảnh, nhạc, video, caption, metadata, v.v.
-  version: 1.0.0
+    API hỗ trợ cho kênh "Still Awake • with Lana", bao gồm các hành động tạo tiêu đề, mô tả, hashtag, prompt cho ảnh, nhạc, video, caption, metadata, v.v.
+  version: "1.0.0"
+  contact:
+    name: Lana
+    url: https://stillawakewithlana.com
 servers:
-  - url: https://api.stillawakewithlana.com
+  - url: https://gpt-api-lana.onrender.com
 paths:
   /generate_title:
     post:
-      summary: Tạo tiêu đề bài nhạc và tiêu đề SEO cho YouTube
+      operationId: generateTitle
+      summary: Tạo tiêu đề chuẩn SEO cho YouTube
       requestBody:
         required: true
         content:
@@ -18,15 +22,15 @@ paths:
               $ref: '#/components/schemas/TitleInput'
       responses:
         '200':
-          description: Tiêu đề đã tạo
+          description: Kết quả tiêu đề
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TitleOutput'
-
   /generate_description:
     post:
-      summary: Tạo mô tả bài nhạc và hashtag
+      operationId: generateDescription
+      summary: Viết mô tả có biểu tượng và hashtag
       requestBody:
         required: true
         content:
@@ -35,78 +39,475 @@ paths:
               $ref: '#/components/schemas/DescriptionInput'
       responses:
         '200':
-          description: Mô tả đã tạo
+          description: Mô tả hoàn chỉnh
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DescriptionOutput'
-
   /generate_comment_cta:
     post:
-      summary: Tạo comment ghim và CTA
+      operationId: generateCommentCTA
+      summary: Tạo bình luận gợi call-to-action
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CTAInput'
+              $ref: '#/components/schemas/CommentInput'
       responses:
         '200':
-          description: Comment & CTA đã tạo
+          description: Bình luận CTA
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CTAOutput'
-
+                $ref: '#/components/schemas/CommentOutput'
+  /generate_thumbnail_prompt:
+    post:
+      operationId: generateThumbnailPrompt
+      summary: Tạo prompt cho thumbnail video
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThumbnailInput'
+      responses:
+        '200':
+          description: Prompt thumbnail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThumbnailOutput'
+  /generate_video_prompt:
+    post:
+      operationId: generateVideoPrompt
+      summary: Tạo prompt cho video cinematic (Dreamina, Veo3)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VideoPromptInput'
+      responses:
+        '200':
+          description: Prompt video
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoPromptOutput'
+  /generate_suno_prompt:
+    post:
+      operationId: generateSunoPrompt
+      summary: Tạo prompt nhạc Suno
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SunoPromptInput'
+      responses:
+        '200':
+          description: Prompt nhạc
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SunoPromptOutput'
+  /generate_facebook_caption:
+    post:
+      operationId: generateFacebookCaption
+      summary: Caption cho Facebook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FacebookInput'
+      responses:
+        '200':
+          description: Caption
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FacebookOutput'
+  /generate_instagram_caption:
+    post:
+      operationId: generateInstagramCaption
+      summary: Caption cho Instagram
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InstagramInput'
+      responses:
+        '200':
+          description: Caption
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstagramOutput'
+  /generate_reel_caption:
+    post:
+      operationId: generateReelCaption
+      summary: Caption cho video reel ngắn
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReelInput'
+      responses:
+        '200':
+          description: Caption reel
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReelOutput'
+  /generate_multi_platform_caption:
+    post:
+      operationId: generateMultiPlatformCaption
+      summary: Caption đồng bộ đa nền tảng
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultiPlatformInput'
+      responses:
+        '200':
+          description: Caption đa nền tảng
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiPlatformOutput'
+  /generate_keywords:
+    post:
+      operationId: generateKeywords
+      summary: Gợi ý từ khóa SEO
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeywordsInput'
+      responses:
+        '200':
+          description: Danh sách từ khóa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeywordsOutput'
+  /generate_metadata:
+    post:
+      operationId: generateMetadata
+      summary: Tạo metadata video/audio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataInput'
+      responses:
+        '200':
+          description: Metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataOutput'
+  /generate_hashtags:
+    post:
+      operationId: generateHashtags
+      summary: Gợi ý hashtag cho nội dung
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HashtagInput'
+      responses:
+        '200':
+          description: Hashtag
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HashtagOutput'
+  /generate_playlist_structure:
+    post:
+      operationId: generatePlaylistStructure
+      summary: Cấu trúc playlist nhạc dài
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaylistInput'
+      responses:
+        '200':
+          description: Cấu trúc playlist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaylistOutput'
+  /generate_podcast_description:
+    post:
+      operationId: generatePodcastDescription
+      summary: Viết mô tả podcast nhẹ nhàng, chuẩn SEO
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PodcastInput'
+      responses:
+        '200':
+          description: Mô tả podcast
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PodcastOutput'
+  /generate_brand_voice:
+    post:
+      operationId: generateBrandVoice
+      summary: Định nghĩa brand voice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrandVoiceInput'
+      responses:
+        '200':
+          description: Brand voice
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandVoiceOutput'
+  /spotify_upload_helper:
+    post:
+      operationId: spotifyUploadHelper
+      summary: Hướng dẫn đăng sản phẩm lên Spotify
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpotifyInput'
+      responses:
+        '200':
+          description: Hướng dẫn Spotify
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpotifyOutput'
 components:
   schemas:
     TitleInput:
       type: object
       properties:
-        mood:
+        topic:
           type: string
-        hour:
-          type: string
+      required:
+        - topic
     TitleOutput:
       type: object
       properties:
         title:
           type: string
-        seo_title:
-          type: string
-
     DescriptionInput:
       type: object
       properties:
-        emotion:
+        topic:
           type: string
-        tags:
-          type: array
-          items:
-            type: string
+      required:
+        - topic
     DescriptionOutput:
       type: object
       properties:
         description:
           type: string
+    CommentInput:
+      type: object
+      properties:
+        topic:
+          type: string
+      required:
+        - topic
+    CommentOutput:
+      type: object
+      properties:
+        comment:
+          type: string
+    ThumbnailInput:
+      type: object
+      properties:
+        scene:
+          type: string
+      required:
+        - scene
+    ThumbnailOutput:
+      type: object
+      properties:
+        prompt:
+          type: string
+    VideoPromptInput:
+      type: object
+      properties:
+        scene:
+          type: string
+      required:
+        - scene
+    VideoPromptOutput:
+      type: object
+      properties:
+        prompt:
+          type: string
+    SunoPromptInput:
+      type: object
+      properties:
+        mood:
+          type: string
+      required:
+        - mood
+    SunoPromptOutput:
+      type: object
+      properties:
+        prompt:
+          type: string
+    FacebookInput:
+      type: object
+      properties:
+        content:
+          type: string
+      required:
+        - content
+    FacebookOutput:
+      type: object
+      properties:
+        caption:
+          type: string
+    InstagramInput:
+      type: object
+      properties:
+        content:
+          type: string
+      required:
+        - content
+    InstagramOutput:
+      type: object
+      properties:
+        caption:
+          type: string
+    ReelInput:
+      type: object
+      properties:
+        content:
+          type: string
+      required:
+        - content
+    ReelOutput:
+      type: object
+      properties:
+        caption:
+          type: string
+    MultiPlatformInput:
+      type: object
+      properties:
+        content:
+          type: string
+      required:
+        - content
+    MultiPlatformOutput:
+      type: object
+      properties:
+        captions:
+          type: array
+          items:
+            type: string
+    KeywordsInput:
+      type: object
+      properties:
+        topic:
+          type: string
+      required:
+        - topic
+    KeywordsOutput:
+      type: object
+      properties:
+        keywords:
+          type: array
+          items:
+            type: string
+    MetadataInput:
+      type: object
+      properties:
+        title:
+          type: string
+      required:
+        - title
+    MetadataOutput:
+      type: object
+      properties:
+        metadata:
+          type: string
+    HashtagInput:
+      type: object
+      properties:
+        topic:
+          type: string
+      required:
+        - topic
+    HashtagOutput:
+      type: object
+      properties:
         hashtags:
           type: array
           items:
             type: string
-
-    CTAInput:
+    PlaylistInput:
       type: object
       properties:
-        language:
+        theme:
           type: string
-    CTAOutput:
+      required:
+        - theme
+    PlaylistOutput:
       type: object
       properties:
-        pinned_comment:
+        structure:
           type: string
-        whisper_comment:
+    PodcastInput:
+      type: object
+      properties:
+        episode:
           type: string
-        cta_variations:
-          type: array
-          items:
-            type: string
+      required:
+        - episode
+    PodcastOutput:
+      type: object
+      properties:
+        description:
+          type: string
+    BrandVoiceInput:
+      type: object
+      properties:
+        brand:
+          type: string
+      required:
+        - brand
+    BrandVoiceOutput:
+      type: object
+      properties:
+        voice:
+          type: string
+    SpotifyInput:
+      type: object
+      properties:
+        product:
+          type: string
+      required:
+        - product
+    SpotifyOutput:
+      type: object
+      properties:
+        instructions:
+          type: string
