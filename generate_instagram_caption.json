@@ -1,0 +1,34 @@
+{
+  "name": "generate_instagram_caption",
+  "description": "Generate an Instagram caption for a music or healing content post.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "theme": {
+        "type": "string",
+        "description": "The emotional or conceptual theme (e.g., 'loneliness', 'peaceful night', 'healing journey')."
+      },
+      "duration": {
+        "type": "string",
+        "enum": ["30min", "1h", "2h", "3h", "8h"],
+        "description": "Length of the music/video post."
+      },
+      "style": {
+        "type": "string",
+        "enum": ["poetic", "minimalist", "friendly", "cinematic"],
+        "description": "Writing style of the caption."
+      },
+      "cta": {
+        "type": "string",
+        "enum": ["comment", "save", "follow", "listen", "explore"],
+        "description": "Type of call-to-action included in the caption."
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese", "Bilingual"],
+        "description": "Language used for the caption."
+      }
+    },
+    "required": ["theme", "duration", "style", "cta", "language"]
+  }
+}
