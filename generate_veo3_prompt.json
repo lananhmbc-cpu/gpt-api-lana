@@ -1,0 +1,46 @@
+{
+  "name": "generate_veo3_prompt",
+  "description": "Generate a cinematic video prompt for Veo3, in Wong Kar-wai style, matching the sleep music mood and brand aesthetic.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "scene": {
+        "type": "string",
+        "description": "The core visual scene (e.g., rainy street, window with glowing light, moonlight over sea)."
+      },
+      "camera_movement": {
+        "type": "string",
+        "description": "Describe camera motion (e.g., slow pan, zoom-in, static wide shot)."
+      },
+      "style": {
+        "type": "string",
+        "default": "Wong Kar-wai",
+        "description": "Visual direction or film style (e.g., Wong Kar-wai, Blade Runner 2049)."
+      },
+      "color_palette": {
+        "type": "string",
+        "description": "Preferred tones (e.g., midnight blue, deep purple, moonlight yellow)."
+      },
+      "atmosphere": {
+        "type": "string",
+        "description": "Mood/feel (e.g., dreamy, emotional, peaceful)."
+      },
+      "aspect_ratio": {
+        "type": "string",
+        "enum": ["16:9", "9:16", "1:1"],
+        "description": "Final output format"
+      },
+      "resolution": {
+        "type": "string",
+        "default": "UHD 4K",
+        "description": "Output resolution (e.g., HD, UHD 4K)"
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese", "Bilingual"],
+        "description": "Language for output prompt"
+      }
+    },
+    "required": ["scene", "camera_movement", "atmosphere"]
+  }
+}
