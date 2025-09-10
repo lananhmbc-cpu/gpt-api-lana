@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: Still Awake • Creator Assistant API
+  description: |
+    API cho hệ thống Creator Assistant hỗ trợ kênh "Still Awake • with Lana". Bao gồm các hành động như tạo tiêu đề, mô tả, hashtag, prompt cho ảnh, nhạc, video, caption, metadata, v.v.
+  version: 1.0.0
+servers:
+  - url: https://api.stillawakewithlana.com
+paths:
+  /generate_title:
+    post:
+      summary: Tạo tiêu đề bài nhạc và tiêu đề SEO cho YouTube
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TitleInput'
+      responses:
+        '200':
+          description: Tiêu đề đã tạo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TitleOutput'
+
+  /generate_description:
+    post:
+      summary: Tạo mô tả bài nhạc và hashtag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DescriptionInput'
+      responses:
+        '200':
+          description: Mô tả đã tạo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DescriptionOutput'
+
+  /generate_comment_cta:
+    post:
+      summary: Tạo comment ghim và CTA
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CTAInput'
+      responses:
+        '200':
+          description: Comment & CTA đã tạo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CTAOutput'
+
+components:
+  schemas:
+    TitleInput:
+      type: object
+      properties:
+        mood:
+          type: string
+        hour:
+          type: string
+    TitleOutput:
+      type: object
+      properties:
+        title:
+          type: string
+        seo_title:
+          type: string
+
+    DescriptionInput:
+      type: object
+      properties:
+        emotion:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    DescriptionOutput:
+      type: object
+      properties:
+        description:
+          type: string
+        hashtags:
+          type: array
+          items:
+            type: string
+
+    CTAInput:
+      type: object
+      properties:
+        language:
+          type: string
+    CTAOutput:
+      type: object
+      properties:
+        pinned_comment:
+          type: string
+        whisper_comment:
+          type: string
+        cta_variations:
+          type: array
+          items:
+            type: string
