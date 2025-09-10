@@ -7,27 +7,16 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Định nghĩa route API
+// Route: generate-title
 app.post('/generate-title', async (req, res) => {
   const { topic } = req.body;
   res.json({ title: `Generated title for ${topic}` });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
-
-// Root route
-app.get('/', (req, res) => {
-  res.send('Still Awake API is running...');
-});
-
-// Action: generate_content_calendar
+// Route: generate_content_calendar
 app.post('/generate_content_calendar', (req, res) => {
   const { brand, product, instructions } = req.body;
 
-  // Nội dung giả lập lịch đăng bài theo phong cách Still Awake
   const calendar = {
     brand,
     product,
@@ -60,7 +49,12 @@ app.post('/generate_content_calendar', (req, res) => {
   res.json(calendar);
 });
 
-// Cổng mặc định cho Render tự dò
-const PORT = process.env.PORT || 3000;
+// Root route
+app.get('/', (req, res) => {
+  res.send('Still Awake API is running...');
+});
+
+// Chỉ **một lần** gọi listen
 app.listen(PORT, () => {
   console.log(`Still Awake API listening on port ${PORT}`);
+});
