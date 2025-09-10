@@ -2,18 +2,26 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+
+// Cấu hình cổng server
 const PORT = process.env.PORT || 3000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Route: generate-title
-app.post('/generate-title', async (req, res) => {
+// Root route
+app.get('/', (req, res) => {
+  res.send('Still Awake API is running...');
+});
+
+// POST /generate-title
+app.post('/generate-title', (req, res) => {
   const { topic } = req.body;
   res.json({ title: `Generated title for ${topic}` });
 });
 
-// Route: generate_content_calendar
+// POST /generate_content_calendar
 app.post('/generate_content_calendar', (req, res) => {
   const { brand, product, instructions } = req.body;
 
@@ -49,12 +57,7 @@ app.post('/generate_content_calendar', (req, res) => {
   res.json(calendar);
 });
 
-// Root route
-app.get('/', (req, res) => {
-  res.send('Still Awake API is running...');
-});
-
-// Chỉ **một lần** gọi listen
+// Khởi động server
 app.listen(PORT, () => {
-  console.log(`Still Awake API listening on port ${PORT}`);
+  console.log(`✅ Still Awake API is running on port ${PORT}`);
 });
