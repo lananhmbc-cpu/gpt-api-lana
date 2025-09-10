@@ -1,0 +1,39 @@
+{
+  "name": "generate_suno_prompt",
+  "description": "Generate a Suno 4.5 music prompt for cinematic sleep & healing music, focused on piano and ambient rain sounds.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "mood": {
+        "type": "string",
+        "description": "Emotional tone of the track (e.g., peaceful, nostalgic, dreamy)."
+      },
+      "tempo_bpm": {
+        "type": "integer",
+        "description": "Desired tempo in BPM (e.g., 55, 60)."
+      },
+      "instruments": {
+        "type": "string",
+        "description": "Main instruments (e.g., piano, ambient rain, soft strings)."
+      },
+      "chords": {
+        "type": "string",
+        "description": "Basic chord progression (e.g., C–G–Am–F)."
+      },
+      "duration_min": {
+        "type": "number",
+        "description": "Duration of the track in minutes."
+      },
+      "looping": {
+        "type": "boolean",
+        "description": "Whether the prompt should generate a seamless loop."
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese", "Bilingual"],
+        "description": "Language for output prompt."
+      }
+    },
+    "required": ["mood", "tempo_bpm", "instruments", "chords", "duration_min"]
+  }
+}
