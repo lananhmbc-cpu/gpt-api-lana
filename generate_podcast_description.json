@@ -1,0 +1,23 @@
+{
+  "name": "generate_podcast_description",
+  "description": "Generate a poetic, emotional, and SEO-friendly podcast description for sleep/whisper/slow talk video content. Include keywords related to nighttime, emotional healing, solitude, and deep rest. Write in English or Vietnamese depending on context.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "description": "Title of the podcast or whisper video"
+      },
+      "duration": {
+        "type": "string",
+        "description": "Duration of the video (e.g., 30min, 2h, 3h loop)"
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese"],
+        "description": "Language to generate the description in"
+      }
+    },
+    "required": ["title", "duration", "language"]
+  }
+}
