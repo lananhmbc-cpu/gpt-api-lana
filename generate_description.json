@@ -1,0 +1,38 @@
+{
+  "name": "generate_description",
+  "description": "Generate a YouTube video description for sleep & healing music content, including keywords, emotional context, and hashtags.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "description": "The video title to base the description on."
+      },
+      "mood": {
+        "type": "string",
+        "description": "The emotional tone of the music (e.g., peaceful, nostalgic, lonely, dreamy, healing)."
+      },
+      "keywords": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of keywords to include in the description (e.g., sleep music, piano rain sounds, ambient)."
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese", "Bilingual"],
+        "description": "The language for the description."
+      },
+      "hashtag_count": {
+        "type": "integer",
+        "description": "Number of SEO hashtags to generate (recommended 10–20)."
+      },
+      "emoji": {
+        "type": "boolean",
+        "description": "Should emojis be included?"
+      }
+    },
+    "required": ["title", "mood", "keywords"]
+  }
+}
