@@ -1,0 +1,28 @@
+{
+    "name": "generate_multi_platform_caption",
+    "description": "Generate short dreamy captions for YouTube Shorts, Instagram Reels, TikTok, and Facebook Reels based on the YouTube music content.",
+    "inputs": {
+        "video_title": "string",
+        "video_description": "string",
+        "platform": "string (youtube | instagram | tiktok | facebook)",
+        "tone": "string (dreamy | emotional | cinematic)"
+    },
+    "outputs": {
+        "caption": "string",
+        "hashtags": "list[string]",
+        "cta": "string"
+    },
+    "example": {
+        "video_title": "Echoes of Silence \u2013 11PM \ud83c\udf19",
+        "video_description": "A cinematic piano piece for those sleepless hours between dream and dawn.",
+        "platform": "instagram",
+        "tone": "dreamy",
+        "caption": "You\u2019re not alone tonight \ud83c\udf0c",
+        "hashtags": [
+            "#sleepmusic",
+            "#healing",
+            "#dreamscape"
+        ],
+        "cta": "\ud83c\udf19 Save this reel for your midnight moment"
+    }
+}
