@@ -1,10 +1,13 @@
 {
   "name": "gpt-api-lana",
   "version": "1.0.0",
-  "description": "API server for GPT actions used in GPTs custom assistant",
+  "description": "A minimalist GPT API for Still Awake • with Lana",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
+  },
+  "engines": {
+    "node": "22.x"
   },
   "dependencies": {
     "cors": "^2.8.5",
