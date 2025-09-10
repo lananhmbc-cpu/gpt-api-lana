@@ -1,65 +1,67 @@
-<details>
-<summary>📋 Nhấn để mở rộng và copy nội dung README mới</summary>
-# 🧠 GPT-API-Lana
+# Still Awake • Creator Assistant API
 
-This is a ready-to-use API project that powers GPT-based assistants to generate music captions, YouTube descriptions, emotional hashtags, podcast intros, brand tone, and more — all inspired by the **Still Awake • with Lana** brand.
+You are a creative assistant for **Lana**, creator of the YouTube brand **"Still Awake • with Lana"**, a cinematic sleep & healing music project using deep storytelling and midnight aesthetics.
 
----
-
-## 🌌 Use Case
-
-Built for:
-
-- YouTube healing music creators
-- Instagram & TikTok caption automation
-- SEO-friendly title & description generators
-- Podcast & playlist publishing workflows
-- Spotify upload metadata helpers
+This repo contains **17 modular JSON files** that define API actions callable from GPTs (custom GPT assistant) to automate music content creation.
 
 ---
 
-## ⚙️ Endpoints
+## 🧠 Brand Identity
 
-Each endpoint follows a consistent structure and is callable directly from [OpenAI Actions](https://platform.openai.com/docs/guides/gpt-best-practices).
-
-Examples:
-
-| Route                          | Description                                |
-|-------------------------------|--------------------------------------------|
-| `/generate_title`             | Generate SEO-optimized YouTube video title |
-| `/generate_description`       | Generate full YouTube video description    |
-| `/generate_instagram_caption` | Write Instagram captions in brand voice    |
-| `/generate_reel_caption`      | Generate short captions for Reels/TikTok   |
-| `/generate_comment_cta`       | Write call-to-action comment pins          |
-| `/generate_playlist_structure`| Suggest playlist structure & titles        |
-| `/generate_brand_voice`       | Define brand tone, mood, and personality   |
-| `/spotify_upload_helper`      | Format metadata for Spotify                |
+- 🎨 **Colors**: Midnight Blue • Deep Purple • Moonlight Yellow  
+- 🎼 **Style**: Dreamy • Emotional • Healing • Cinematic • Whispery  
+- 🎯 **Keywords**: sleep music, healing, insomnia, piano, ambient, rain, deep rest  
 
 ---
 
-## 📁 File Structure
+## ✅ List of JSON Actions (used in GPTs)
+
+| # | File Name | Description | Status |
+|--|-----------|-------------|--------|
+| 1 | `generate_title.json` | 🎵 Generate poetic YouTube titles | ✅ Done |
+| 2 | `generate_description.json` | 📝 Write descriptions for tracks | ✅ Done |
+| 3 | `generate_hashtags.json` | #️⃣ Create SEO hashtags | ✅ Done |
+| 4 | `generate_comment_cta.json` | 💬 YouTube comments & CTA | ✅ Done |
+| 5 | `generate_facebook_caption.json` | 📝 Facebook captions | ✅ Done |
+| 6 | `generate_instagram_caption.json` | 📷 Instagram captions | ✅ Done |
+| 7 | `generate_reel_caption.json` | 📱 Reel / short captions | ✅ Done |
+| 8 | `generate_playlist_structure.json` | 📁 Playlist structure planner | ✅ Done |
+| 9 | `generate_brand_voice.json` | 🎙 Define brand tone | ✅ Done |
+|10 | `generate_podcast_description.json` | 🎧 Podcast descriptions | ✅ Done |
+|11 | `generate_suno_prompt.json` | 🎵 Music prompts for Suno | ✅ Done |
+|12 | `generate_thumbnail_prompt.json` | 🖼 Thumbnail design prompts | ✅ Done |
+|13 | `generate_video_prompt.json` | 🎥 Video generation prompts | ❌ Missing |
+|14 | `generate_multi_platform_caption.json` | 📢 Multi-platform captions | ❌ Missing |
+|15 | `generate_metadata.json` | 📌 General content metadata | ❌ Missing |
+|16 | `generate_keywords.json` | 🔍 Keyword suggestions | ❌ Missing |
+|17 | `spotify_upload_helper.json` | 📤 Upload guide for Spotify | ✅ Done |
+
 ---
 
-## 🧩 API Integration Guide
+## 🚀 How to Use
 
-This API is hosted on **Render** (or Glitch, Replit). You can:
+This repo is designed to be connected to:
+- [Custom GPTs](https://chat.openai.com/gpts)
+- [n8n](https://n8n.io/) or [Make](https://www.make.com/) (automation)
+- [Render](https://render.com/) / [Glitch](https://glitch.com/) / [Replit](https://replit.com/) for API hosting
 
-1. Fork this repo
-2. Deploy via [Render.com](https://render.com)
-3. Copy the base URL (e.g. `https://gpt-api-lana.onrender.com`)
-4. Use it in OpenAI GPT Actions (via `openapi.yaml`)
-
----
-
-## 💜 About Lana
-
-This API is part of a larger ecosystem:
-> “Still Awake • with Lana” – a night-music healing project that blends art, poetry, meditation, and sound design.
+You can call these JSON endpoints from GPT or external workflows to:
+- Create content automatically (titles, descriptions, thumbnails)
+- Sync metadata with YouTube, Spotify, and social media
+- Keep content tone consistent with the brand
 
 ---
 
-## 📄 License
+## 📌 Status
 
-MIT – free for creative and spiritual projects.
-</details>
+**Last updated**: 2025-09-10  
+**Maintained by**: Lana & AI team ✨
+
+---
+
+## 💡 Next Steps
+
+- [ ] Create missing JSON files (video prompt, metadata, etc.)
+- [ ] Build a public Render API endpoint
+- [ ] Connect with GPTs + n8n for automation
 
