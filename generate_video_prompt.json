@@ -1,0 +1,22 @@
+{
+  "name": "generate_video_prompt",
+  "description": "Generate a cinematic Veo3 video prompt based on scene, lighting, emotion, and visual style.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "scene_description": {
+        "type": "string",
+        "description": "A specific scene to visualize (e.g., 'a girl sitting by a rainy window at 2AM')"
+      },
+      "camera_movement": {
+        "type": "string",
+        "description": "Style of camera movement (e.g., slow pan, steadycam, zoom-in)"
+      }
+    },
+    "required": [
+      "scene_description",
+      "camera_movement"
+    ]
+  },
+  "prompt_template": "Cinematic video of {scene_description}, slow motion, dreamy atmosphere, soft lighting, midnight blue and deep purple color grading, moonlight yellow highlight, emotional, ultra-detailed, 16:9, UHD 4K, film still, directed by Wong Kar-wai style, camera movement {camera_movement}."
+}
