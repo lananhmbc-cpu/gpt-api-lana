@@ -1,0 +1,24 @@
+{
+  "name": "generate_playlist_structure",
+  "description": "Generate metadata structure and naming conventions for multi-length versions of a sleep music track (30min, 1h, 2h, 3h, 8h). Include titles, descriptions, duration, and YouTube-friendly formatting. Support both English and Vietnamese.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "base_title": {
+        "type": "string",
+        "description": "The base title of the music (e.g., 'Silent Rain over Midnight Streets')"
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese"],
+        "description": "The language for output content"
+      },
+      "tone": {
+        "type": "string",
+        "enum": ["dreamy", "healing", "cinematic", "peaceful", "emotional"],
+        "description": "Overall tone for title and description styling"
+      }
+    },
+    "required": ["base_title", "language", "tone"]
+  }
+}
