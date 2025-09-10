@@ -1,0 +1,24 @@
+{
+  "name": "generate_hashtags",
+  "description": "Generate 10–20 SEO-optimized hashtags related to sleep, healing, night music, ambient piano, or emotional cinematic themes. Output includes both English and Vietnamese hashtags.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "topic": {
+        "type": "string",
+        "description": "Topic or theme of the music/video (e.g., deep sleep, rain piano, healing energy, insomnia, 2AM loop)"
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese", "Bilingual"],
+        "description": "Language of the hashtags"
+      },
+      "platform": {
+        "type": "string",
+        "enum": ["YouTube", "Instagram", "Facebook", "TikTok"],
+        "description": "Platform the hashtags will be used on"
+      }
+    },
+    "required": ["topic", "language", "platform"]
+  }
+}
