@@ -1,0 +1,29 @@
+{
+    "name": "generate_keywords",
+    "description": "Generate relevant keywords for healing music and nighttime ambiance videos.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "video_theme": {
+                "type": "string",
+                "description": "The overall mood or theme of the video (e.g., deep sleep, rainy night, piano rain, insomnia relief)."
+            },
+            "duration": {
+                "type": "string",
+                "description": "The length of the video (e.g., 30min, 1h, 2h, 3h, 8h)."
+            },
+            "languages": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "description": "List of languages for keyword generation, e.g., ['English', 'Vietnamese']."
+            }
+        },
+        "required": [
+            "video_theme",
+            "duration",
+            "languages"
+        ]
+    }
+}
