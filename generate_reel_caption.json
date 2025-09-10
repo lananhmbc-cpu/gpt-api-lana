@@ -1,0 +1,32 @@
+{
+  "name": "generate_reel_caption",
+  "description": "Generate a short, emotional caption for Reels or short-form videos related to healing music or cinematic night themes.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "reel_topic": {
+        "type": "string",
+        "description": "The core topic of the reel (e.g., midnight rain, loneliness, insomnia, peace)"
+      },
+      "emotion": {
+        "type": "string",
+        "description": "The mood or feeling the reel evokes (e.g., dreamy, melancholic, warm)"
+      },
+      "cta": {
+        "type": "string",
+        "description": "Call-to-action to engage viewers (e.g., Save if this is you, Tag someone, Listen with headphones)"
+      },
+      "style": {
+        "type": "string",
+        "enum": ["soft", "whisper", "cinematic", "storytelling", "minimal"],
+        "description": "Caption writing tone/style"
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese", "Bilingual"],
+        "description": "Language for the caption"
+      }
+    },
+    "required": ["reel_topic", "emotion", "cta", "style", "language"]
+  }
+}
