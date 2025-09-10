@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
   res.send('Still Awake API is running...');
 });
 
-// POST /generate-title
-app.post('/generate-title', (req, res) => {
+// POST /generate_title
+app.post('/generate_title', (req, res) => {
   const { topic } = req.body;
   res.json({ title: `Generated title for ${topic}` });
 });
