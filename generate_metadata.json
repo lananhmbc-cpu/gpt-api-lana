@@ -1,0 +1,63 @@
+{
+  "name": "generate_metadata",
+  "description": "Generate metadata for YouTube videos including title, description, tags, duration, publishing hour, and content category.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "title": {
+        "type": "string",
+        "description": "SEO-optimized video title based on sleep/healing music context and brand tone"
+      },
+      "description": {
+        "type": "string",
+        "description": "Soothing and keyword-rich video description"
+      },
+      "hashtags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of relevant hashtags in English and Vietnamese"
+      },
+      "duration": {
+        "type": "string",
+        "enum": [
+          "30min",
+          "1h",
+          "2h",
+          "3h",
+          "8h"
+        ],
+        "description": "Length of the video"
+      },
+      "hour": {
+        "type": "string",
+        "enum": [
+          "11PM",
+          "2AM",
+          "4AM",
+          "6AM"
+        ],
+        "description": "Target publishing hour of the video"
+      },
+      "category": {
+        "type": "string",
+        "enum": [
+          "Sleep Music",
+          "Healing Music",
+          "Rain Sounds",
+          "Ambient Piano"
+        ],
+        "description": "Content category"
+      }
+    },
+    "required": [
+      "title",
+      "description",
+      "hashtags",
+      "duration",
+      "hour",
+      "category"
+    ]
+  }
+}
