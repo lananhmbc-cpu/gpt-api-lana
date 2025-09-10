@@ -1,0 +1,20 @@
+{
+  "name": "generate_brand_voice",
+  "description": "Return a brand voice guide for 'Still Awake • with Lana', including tone of voice, style, color palette, emotional keywords, and rules for creating consistent healing/sleep content across music, video, description, and social media.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese"],
+        "description": "Language for the brand voice guide"
+      },
+      "output_type": {
+        "type": "string",
+        "enum": ["short", "detailed"],
+        "description": "Output level: short summary or detailed brand manual"
+      }
+    },
+    "required": ["language", "output_type"]
+  }
+}
