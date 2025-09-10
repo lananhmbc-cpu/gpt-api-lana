@@ -27,6 +27,52 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TitleOutput'
+  /generate_content_calendar:
+    post:
+      operationId: generateContentCalendar
+      summary: Generate content calendar for music brand
+      description: Creates a weekly content schedule for the Still Awake brand based on product and instructions.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                brand:
+                  type: string
+                  example: Still Awake
+                product:
+                  type: string
+                  example: Deep Sleep Album
+                instructions:
+                  type: string
+                  example: Lên lịch nội dung chữa lành nhẹ nhàng cho tuần tới theo phong cách midnight blue và piano
+      responses:
+        '200':
+          description: Content calendar created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  suggestion:
+                    type: string
+                    example: 📆 Lịch đăng bài tuần theo brand "Still Awake"
+                  schedule:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        day:
+                          type: string
+                          example: Thứ 2
+                        time:
+                          type: string
+                          example: 9:00 PM
+                        content:
+                          type: string
+                          example: 🎧 Full album "Whispers of the Night" (2h) ra mắt
   /generate_description:
     post:
       operationId: generateDescription
