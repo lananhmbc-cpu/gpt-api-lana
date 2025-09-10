@@ -1,0 +1,29 @@
+{
+  "name": "generate_comment_cta",
+  "description": "Generate a short CTA comment for users to interact with the video or music.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "platform": {
+        "type": "string",
+        "enum": ["YouTube", "Instagram", "TikTok", "Facebook"],
+        "description": "The platform the comment will be used on"
+      },
+      "tone": {
+        "type": "string",
+        "enum": ["gentle", "curious", "emotional", "fun", "inspiring"],
+        "description": "The tone or feeling the comment should convey"
+      },
+      "context": {
+        "type": "string",
+        "description": "The context of the content (e.g., deep sleep piano, rain music, 90-minute healing track, etc.)"
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese", "Bilingual"],
+        "description": "Language for the comment"
+      }
+    },
+    "required": ["platform", "tone", "context", "language"]
+  }
+}
