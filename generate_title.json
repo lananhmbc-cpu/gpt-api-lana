@@ -1,0 +1,31 @@
+{
+  "name": "generate_title",
+  "description": "Generate a SEO-optimized YouTube video title for music content based on mood, theme, and duration.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "mood": {
+        "type": "string",
+        "description": "The emotional mood of the video (e.g., relaxing, sad, hopeful, nostalgic, lonely, peaceful)."
+      },
+      "theme": {
+        "type": "string",
+        "description": "The theme or visual setting of the video (e.g., rainy night, moonlight, window view, forest, streetlamp)."
+      },
+      "duration": {
+        "type": "string",
+        "description": "The duration of the video (e.g., 30 minutes, 1 hour, 2 hours, 8 hours)."
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese", "Bilingual"],
+        "description": "The language for the title."
+      },
+      "emoji": {
+        "type": "boolean",
+        "description": "Should the title include emojis?"
+      }
+    },
+    "required": ["mood", "theme", "duration"]
+  }
+}
