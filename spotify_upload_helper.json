@@ -1,0 +1,32 @@
+{
+  "name": "spotify_upload_helper",
+  "description": "Generate a complete metadata and upload guide for a sleep/healing music track to Spotify via distributor (e.g., DistroKid, TuneCore, etc.)",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "track_title": {
+        "type": "string",
+        "description": "Title of the music track"
+      },
+      "language": {
+        "type": "string",
+        "enum": ["English", "Vietnamese"],
+        "description": "Language for metadata fields"
+      },
+      "mood_tags": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Mood-related tags (e.g., 'sleep', 'relaxation', 'ambient')"
+      },
+      "release_date": {
+        "type": "string",
+        "description": "Scheduled release date (YYYY-MM-DD)"
+      },
+      "duration_minutes": {
+        "type": "number",
+        "description": "Length of the track in minutes"
+      }
+    },
+    "required": ["track_title", "language", "mood_tags", "release_date", "duration_minutes"]
+  }
+}
