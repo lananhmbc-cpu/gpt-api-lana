@@ -1,132 +1,186 @@
-const express = require('express');
+// index.js
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+
 const app = express();
-const cors = require('cors');
+const port = process.env.PORT || 3000;
 
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.send('Welcome to Lana’s GPT API 🎶');
+// Utilities
+const success = (res, result) => res.status(200).json({ result });
+const error = (res, msg = "Something went wrong") => res.status(500).json({ error: msg });
+
+// Action handlers
+app.post("/generate_title", (req, res) => {
+  try {
+    const { input } = req.body;
+    success(res, `🎵 Title generated from: ${input}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 1. generateTitle
-app.post('/generate_title', (req, res) => {
-  const { topic } = req.body;
-  res.json({ title: `🎵 Title suggestion for: ${topic}` });
+app.post("/generate_content_calendar", (req, res) => {
+  try {
+    const { theme } = req.body;
+    success(res, `📅 Content calendar created for theme: ${theme}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 2. generateShortTitle
-app.post('/generate_short_title', (req, res) => {
-  const { topic } = req.body;
-  res.json({ shortTitle: `🎧 Short title for: ${topic}` });
+app.post("/generate_description", (req, res) => {
+  try {
+    const { content } = req.body;
+    success(res, `📄 Description created for: ${content}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 3. generateDescription
-app.post('/generate_description', (req, res) => {
-  const { title } = req.body;
-  res.json({ description: `✨ Description for "${title}"` });
+app.post("/generate_comment_cta", (req, res) => {
+  try {
+    const { mood } = req.body;
+    success(res, `💬 Comment CTA generated for mood: ${mood}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 4. generateFacebookCaption
-app.post('/generate_facebook_caption', (req, res) => {
-  const { title } = req.body;
-  res.json({ facebookCaption: `📘 Facebook caption for: ${title}` });
+app.post("/generate_thumbnail_prompt", (req, res) => {
+  try {
+    const { scene } = req.body;
+    success(res, `🖼 Thumbnail prompt created for: ${scene}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 5. generateInstagramCaption
-app.post('/generate_instagram_caption', (req, res) => {
-  const { title } = req.body;
-  res.json({ instagramCaption: `📸 IG caption for: ${title}` });
+app.post("/generate_video_prompt", (req, res) => {
+  try {
+    const { concept } = req.body;
+    success(res, `🎬 Video prompt created for: ${concept}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 6. generateMultiPlatformCaption
-app.post('/generate_multi_platform_caption', (req, res) => {
-  const { title } = req.body;
-  res.json({ multiPlatform: `🌐 Universal caption for: ${title}` });
+app.post("/generate_suno_prompt", (req, res) => {
+  try {
+    const { style } = req.body;
+    success(res, `🎧 Suno prompt created in style: ${style}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 7. generateHashtag
-app.post('/generate_hashtag', (req, res) => {
-  const { topic } = req.body;
-  res.json({ hashtags: [`#${topic.replace(/\s+/g, '').toLowerCase()}`, '#healing', '#stillawake'] });
+app.post("/generate_facebook_caption", (req, res) => {
+  try {
+    const { post } = req.body;
+    success(res, `📘 Facebook caption: ${post}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 8. generateMetadata
-app.post('/generate_metadata', (req, res) => {
-  const { title } = req.body;
-  res.json({ metadata: { title, keywords: ['sleep', 'music'], description: `Meta for: ${title}` } });
+app.post("/generate_instagram_caption", (req, res) => {
+  try {
+    const { photo } = req.body;
+    success(res, `📸 Instagram caption created for photo: ${photo}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 9. generateKeywords
-app.post('/generate_keywords', (req, res) => {
-  const { topic } = req.body;
-  res.json({ keywords: topic.split(' ') });
+app.post("/generate_reel_caption", (req, res) => {
+  try {
+    const { vibe } = req.body;
+    success(res, `🎞 Reel caption generated for vibe: ${vibe}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 10. generateCommentCTA
-app.post('/generate_comment_cta', (req, res) => {
-  const { title } = req.body;
-  res.json({ commentCTA: `🌙 Bạn đang nghe nhạc "${title}" vào lúc nào? Hãy comment nhé!` });
+app.post("/generate_multi_platform_caption", (req, res) => {
+  try {
+    const { topic } = req.body;
+    success(res, `🌐 Multi-platform caption created for: ${topic}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 11. generateContentCalendar
-app.post('/generate_content_calendar', (req, res) => {
-  const { month } = req.body;
-  res.json({ calendar: `🗓 Content calendar for ${month}` });
+app.post("/generate_keywords", (req, res) => {
+  try {
+    const { subject } = req.body;
+    success(res, `🔍 Keywords generated for: ${subject}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 12. generateBlogCaption
-app.post('/generate_blog_caption', (req, res) => {
-  const { topic } = req.body;
-  res.json({ blogCaption: `📝 Blog caption for: ${topic}` });
+app.post("/generate_metadata", (req, res) => {
+  try {
+    const { content } = req.body;
+    success(res, `🧩 Metadata generated for: ${content}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 13. generateReelScript
-app.post('/generate_reel_script', (req, res) => {
-  const { idea } = req.body;
-  res.json({ reelScript: `🎥 Script for short reel: ${idea}` });
+app.post("/generate_hashtags", (req, res) => {
+  try {
+    const { niche } = req.body;
+    success(res, `🏷 Hashtags generated for: ${niche}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 14. generateThumbnailPrompt
-app.post('/generate_thumbnail_prompt', (req, res) => {
-  const { style } = req.body;
-  res.json({
-    prompt: `A cinematic thumbnail in ${style} style with moonlight, purple & midnight tones, paper cutout glow`
-  });
+app.post("/generate_playlist_structure", (req, res) => {
+  try {
+    const { theme } = req.body;
+    success(res, `🎶 Playlist structure for: ${theme}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 15. generateVideoPrompt
-app.post('/generate_video_prompt', (req, res) => {
-  const { scene } = req.body;
-  res.json({
-    prompt: `Cinematic video of ${scene}, slow motion, dreamy atmosphere, soft lighting, midnight blue and deep purple color grading, moonlight yellow highlight, emotional, ultra-detailed, 16:9, UHD 4K, film still, directed by Wong Kar-wai style`
-  });
+app.post("/generate_podcast_description", (req, res) => {
+  try {
+    const { episode } = req.body;
+    success(res, `🎙 Podcast description for: ${episode}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 16. generateSunoPrompt
-app.post('/generate_suno_prompt', (req, res) => {
-  const { mood } = req.body;
-  res.json({
-    prompt: `8-min instrumental piano, BPM 60, reverb, calm & ${mood}, no vocals, designed for sleep`
-  });
+app.post("/generate_brand_voice", (req, res) => {
+  try {
+    const { identity } = req.body;
+    success(res, `🗣 Brand voice for: ${identity}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 17. generateSunoLoopPrompt
-app.post('/generate_suno_loop_prompt', (req, res) => {
-  const { emotion } = req.body;
-  res.json({
-    prompt: `Seamless Suno loop for ${emotion} emotion, ambient background, 90min-ready`
-  });
+app.post("/spotify_upload_helper", (req, res) => {
+  try {
+    const { track } = req.body;
+    success(res, `🎵 Spotify upload helper created for track: ${track}`);
+  } catch (err) {
+    error(res);
+  }
 });
 
-// 18. generateYoutubeTags
-app.post('/generate_youtube_tags', (req, res) => {
-  const { title } = req.body;
-  res.json({ tags: [`${title}`, 'relaxing music', 'healing sounds'] });
+// Default route
+app.get("/", (req, res) => {
+  res.send("🟢 GPT API for Lana is running.");
 });
 
-// PORT setup
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🌙 Lana’s GPT API is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
 });
