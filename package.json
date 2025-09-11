@@ -1,16 +1,27 @@
 {
   "name": "gpt-api-lana",
   "version": "1.0.0",
-  "description": "A minimalist GPT API for Still Awake • with Lana",
+  "description": "GPT assistant endpoints for Still Awake • with Lana",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
-  "engines": {
-    "node": "22.x"
-  },
+  "keywords": [
+    "GPT",
+    "Express",
+    "AI",
+    "Content Generator",
+    "Suno",
+    "Thumbnail",
+    "Spotify",
+    "Still Awake"
+  ],
+  "author": "Lana",
+  "license": "MIT",
   "dependencies": {
+    "express": "^4.18.2",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "dotenv": "^16.3.1"
   }
 }
