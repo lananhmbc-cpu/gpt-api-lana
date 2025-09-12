@@ -1,186 +1,190 @@
-// index.js
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
 
 const app = express();
-const port = process.env.PORT || 3000;
-
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-// Utilities
-const success = (res, result) => res.status(200).json({ result });
-const error = (res, msg = "Something went wrong") => res.status(500).json({ error: msg });
-
-// Action handlers
+/**
+ * 1. Generate Title
+ */
 app.post("/generate_title", (req, res) => {
-  try {
-    const { input } = req.body;
-    success(res, `🎵 Title generated from: ${input}`);
-  } catch (err) {
-    error(res);
-  }
+  const { mood, theme, duration, language, emoji } = req.body;
+  res.json({
+    result: `🎶 ${emoji ? "✨ " : ""}${mood} ${theme} • ${duration} [${language}]`
+  });
 });
 
-app.post("/generate_content_calendar", (req, res) => {
-  try {
-    const { theme } = req.body;
-    success(res, `📅 Content calendar created for theme: ${theme}`);
-  } catch (err) {
-    error(res);
-  }
-});
-
+/**
+ * 2. Generate Description
+ */
 app.post("/generate_description", (req, res) => {
-  try {
-    const { content } = req.body;
-    success(res, `📄 Description created for: ${content}`);
-  } catch (err) {
-    error(res);
-  }
+  const { title, mood, keywords, language, hashtag_count, emoji } = req.body;
+  res.json({
+    result: `📖 ${title} | Mood: ${mood} | Keywords: ${keywords.join(", ")} | ${hashtag_count} hashtags | ${emoji ? "With emoji" : "No emoji"} | ${language}`
+  });
 });
 
-app.post("/generate_comment_cta", (req, res) => {
-  try {
-    const { mood } = req.body;
-    success(res, `💬 Comment CTA generated for mood: ${mood}`);
-  } catch (err) {
-    error(res);
-  }
-});
-
-app.post("/generate_thumbnail_prompt", (req, res) => {
-  try {
-    const { scene } = req.body;
-    success(res, `🖼 Thumbnail prompt created for: ${scene}`);
-  } catch (err) {
-    error(res);
-  }
-});
-
+/**
+ * 3. Generate Video Prompt
+ */
 app.post("/generate_video_prompt", (req, res) => {
-  try {
-    const { concept } = req.body;
-    success(res, `🎬 Video prompt created for: ${concept}`);
-  } catch (err) {
-    error(res);
-  }
+  const { scene_description, camera_movement } = req.body;
+  res.json({
+    result: `🎬 Cinematic video of ${scene_description} | Camera: ${camera_movement}`
+  });
 });
 
-app.post("/generate_suno_prompt", (req, res) => {
-  try {
-    const { style } = req.body;
-    success(res, `🎧 Suno prompt created in style: ${style}`);
-  } catch (err) {
-    error(res);
-  }
+/**
+ * 4. Generate Veo3 Prompt
+ */
+app.post("/generate_veo3_prompt", (req, res) => {
+  const { scene, camera_movement, style, color_palette, atmosphere, aspect_ratio, resolution, language } = req.body;
+  res.json({
+    result: `🎥 Veo3 Prompt → Scene: ${scene}, Camera: ${camera_movement}, Style: ${style}, Palette: ${color_palette}, Atmosphere: ${atmosphere}, AR: ${aspect_ratio}, Res: ${resolution}, Lang: ${language}`
+  });
 });
 
-app.post("/generate_facebook_caption", (req, res) => {
-  try {
-    const { post } = req.body;
-    success(res, `📘 Facebook caption: ${post}`);
-  } catch (err) {
-    error(res);
-  }
-});
-
-app.post("/generate_instagram_caption", (req, res) => {
-  try {
-    const { photo } = req.body;
-    success(res, `📸 Instagram caption created for photo: ${photo}`);
-  } catch (err) {
-    error(res);
-  }
-});
-
-app.post("/generate_reel_caption", (req, res) => {
-  try {
-    const { vibe } = req.body;
-    success(res, `🎞 Reel caption generated for vibe: ${vibe}`);
-  } catch (err) {
-    error(res);
-  }
-});
-
-app.post("/generate_multi_platform_caption", (req, res) => {
-  try {
-    const { topic } = req.body;
-    success(res, `🌐 Multi-platform caption created for: ${topic}`);
-  } catch (err) {
-    error(res);
-  }
-});
-
-app.post("/generate_keywords", (req, res) => {
-  try {
-    const { subject } = req.body;
-    success(res, `🔍 Keywords generated for: ${subject}`);
-  } catch (err) {
-    error(res);
-  }
-});
-
-app.post("/generate_metadata", (req, res) => {
-  try {
-    const { content } = req.body;
-    success(res, `🧩 Metadata generated for: ${content}`);
-  } catch (err) {
-    error(res);
-  }
-});
-
-app.post("/generate_hashtags", (req, res) => {
-  try {
-    const { niche } = req.body;
-    success(res, `🏷 Hashtags generated for: ${niche}`);
-  } catch (err) {
-    error(res);
-  }
-});
-
+/**
+ * 5. Generate Playlist Structure
+ */
 app.post("/generate_playlist_structure", (req, res) => {
-  try {
-    const { theme } = req.body;
-    success(res, `🎶 Playlist structure for: ${theme}`);
-  } catch (err) {
-    error(res);
-  }
+  const { base_title, language, tone } = req.body;
+  res.json({
+    structure: `📂 Playlist for ${base_title} (${tone}) [${language}] → 30min | 1h | 2h | 3h | 8h`
+  });
 });
 
+/**
+ * 6. Generate Thumbnail Prompt
+ */
+app.post("/generate_thumbnail_prompt", (req, res) => {
+  const { scene, palette, style, aspect_ratio, language } = req.body;
+  res.json({
+    result: `🖼 Thumbnail → Scene: ${scene}, Palette: ${palette}, Style: ${style}, Ratio: ${aspect_ratio}, Lang: ${language}`
+  });
+});
+
+/**
+ * 7. Generate Suno Prompt
+ */
+app.post("/generate_suno_prompt", (req, res) => {
+  const { mood, tempo_bpm, instruments, chords, duration_min, looping, language } = req.body;
+  res.json({
+    result: `🎵 Suno → Mood: ${mood}, Tempo: ${tempo_bpm}, Instruments: ${instruments}, Chords: ${chords}, Duration: ${duration_min}min, Looping: ${looping}, Lang: ${language}`
+  });
+});
+
+/**
+ * 8. Generate Metadata
+ */
+app.post("/generate_metadata", (req, res) => {
+  const { title, description, hashtags, duration, hour, category } = req.body;
+  res.json({
+    metadata: { title, description, hashtags, duration, hour, category }
+  });
+});
+
+/**
+ * 9. Generate Keywords
+ */
+app.post("/generate_keywords", (req, res) => {
+  const { video_theme, duration, languages } = req.body;
+  res.json({
+    result: `🔑 Keywords → Theme: ${video_theme}, Duration: ${duration}, Languages: ${languages.join(", ")}`
+  });
+});
+
+/**
+ * 10. Generate Hashtags
+ */
+app.post("/generate_hashtags", (req, res) => {
+  const { topic, language, platform } = req.body;
+  res.json({
+    result: `#️⃣ Hashtags for ${topic} [${language}] on ${platform}`
+  });
+});
+
+/**
+ * 11. Generate Comment CTA
+ */
+app.post("/generate_comment_cta", (req, res) => {
+  const { platform, tone, context, language } = req.body;
+  res.json({
+    result: `💬 CTA → Platform: ${platform}, Tone: ${tone}, Context: ${context}, Lang: ${language}`
+  });
+});
+
+/**
+ * 12. Generate Facebook Caption
+ */
+app.post("/generate_facebook_caption", (req, res) => {
+  const { video_title, theme, target_audience, style, include_hashtags, language } = req.body;
+  res.json({
+    result: `📘 FB Caption → ${video_title} (${theme}) → Audience: ${target_audience}, Style: ${style}, Hashtags: ${include_hashtags}, Lang: ${language}`
+  });
+});
+
+/**
+ * 13. Generate Instagram Caption
+ */
+app.post("/generate_instagram_caption", (req, res) => {
+  const { theme, duration, style, cta, language } = req.body;
+  res.json({
+    result: `📸 IG Caption → Theme: ${theme}, Duration: ${duration}, Style: ${style}, CTA: ${cta}, Lang: ${language}`
+  });
+});
+
+/**
+ * 14. Generate Reel Caption
+ */
+app.post("/generate_reel_caption", (req, res) => {
+  const { reel_topic, emotion, cta, style, language } = req.body;
+  res.json({
+    result: `🎞 Reel → Topic: ${reel_topic}, Emotion: ${emotion}, CTA: ${cta}, Style: ${style}, Lang: ${language}`
+  });
+});
+
+/**
+ * 15. Generate Multi-Platform Caption
+ */
+app.post("/generate_multi_platform_caption", (req, res) => {
+  const { video_title, video_description, platform, tone } = req.body;
+  res.json({
+    result: `🌍 Multi-Caption → ${video_title} | ${video_description} | Platform: ${platform}, Tone: ${tone}`
+  });
+});
+
+/**
+ * 16. Generate Podcast Description
+ */
 app.post("/generate_podcast_description", (req, res) => {
-  try {
-    const { episode } = req.body;
-    success(res, `🎙 Podcast description for: ${episode}`);
-  } catch (err) {
-    error(res);
-  }
+  const { title, duration, language } = req.body;
+  res.json({
+    result: `🎙 Podcast → ${title}, Duration: ${duration}, Lang: ${language}`
+  });
 });
 
+/**
+ * 17. Generate Brand Voice
+ */
 app.post("/generate_brand_voice", (req, res) => {
-  try {
-    const { identity } = req.body;
-    success(res, `🗣 Brand voice for: ${identity}`);
-  } catch (err) {
-    error(res);
-  }
+  const { language, output_type } = req.body;
+  res.json({
+    result: `🗣 Brand Voice → Lang: ${language}, Type: ${output_type}`
+  });
 });
 
+/**
+ * 18. Spotify Upload Helper
+ */
 app.post("/spotify_upload_helper", (req, res) => {
-  try {
-    const { track } = req.body;
-    success(res, `🎵 Spotify upload helper created for track: ${track}`);
-  } catch (err) {
-    error(res);
-  }
+  const { track_title, language, mood_tags, release_date, duration_minutes } = req.body;
+  res.json({
+    result: `🎧 Spotify Upload → ${track_title}, Mood: ${mood_tags.join(", ")}, Release: ${release_date}, Duration: ${duration_minutes}min, Lang: ${language}`
+  });
 });
 
-// Default route
-app.get("/", (req, res) => {
-  res.send("🟢 GPT API for Lana is running.");
-});
-
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+// Server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 API server running on port ${PORT}`));
